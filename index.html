@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Humaid Hassan | Aspiring Filmmaker</title>
+
+<style>
+:root{
+    --bg:#0d0d0d;
+    --gold:#d4af37;
+    --gold-soft:#f0d878;
+    --card:rgba(255,255,255,0.05);
+    --border:rgba(212,175,55,0.25);
+    --text:#f5f5f5;
+    --muted:#b8b8b8;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x:hidden;
+    line-height:1.7;
+}
+
+/* Cinematic Background */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(212,175,55,.08), transparent 30%),
+    radial-gradient(circle at 80% 80%, rgba(212,175,55,.08), transparent 30%),
+    repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 90px,
+    rgba(212,175,55,.03) 91px,
+    rgba(212,175,55,.03) 95px
+    );
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+    background-size:60px 60px;
+    z-index:-3;
+}
+
+/* Loading Screen */
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    transition:1s;
+}
+
+.loader-title{
+    color:var(--gold);
+    font-size:2rem;
+    letter-spacing:5px;
+    text-transform:uppercase;
+}
+
+.loader-bar{
+    width:250px;
+    height:4px;
+    background:#222;
+    margin-top:20px;
+    overflow:hidden;
+}
+
+.loader-bar span{
+    display:block;
+    width:0%;
+    height:100%;
+    background:var(--gold);
+    animation:load 2.5s ease forwards;
+}
+
+@keyframes load{
+    to{width:100%;}
+}
+
+/* Intro */
+
+#intro{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:hideIntro 5s forwards;
+}
+
+.intro-text{
+    color:var(--gold);
+    font-size:clamp(2rem,6vw,5rem);
+    letter-spacing:12px;
+    text-transform:uppercase;
+    text-align:center;
+    animation:cinema 3s ease infinite;
+}
+
+@keyframes cinema{
+    0%,100%{opacity:1;text-shadow:0 0 10px var(--gold);}
+    50%{opacity:.5;text-shadow:0 0 30px var(--gold);}
+}
+
+@keyframes hideIntro{
+    0%,80%{opacity:1;visibility:visible;}
+    100%{opacity:0;visibility:hidden;}
+}
+
+/* Navbar */
+
+nav{
+    position:sticky;
+    top:0;
+    backdrop-filter:blur(12px);
+    background:rgba(0,0,0,.65);
+    border-bottom:1px solid rgba(212,175,55,.2);
+    z-index:1000;
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 25px;
+}
+
+.logo{
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:3px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--gold);
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.profile{
+    width:220px;
+    height:220px;
+    margin:auto;
+    border-radius:50%;
+    border:4px solid var(--gold);
+    overflow:hidden;
+    box-shadow:
+        0 0 25px rgba(212,175,55,.35),
+        0 0 60px rgba(212,175,55,.15);
+    background:#111;
+    position:relative;
+}
+
+.profile::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    box-shadow: inset 0 0 30px rgba(212,175,55,.15);
+    pointer-events:none;
+}
+
+.profile img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+.hero h1{
+    font-size:clamp(2.8rem,7vw,5rem);
+    margin-top:30px;
+}
+
+.hero h2{
+    color:var(--gold);
+    font-weight:400;
+    margin:15px 0;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:800px;
+    margin:20px auto;
+}
+
+.contact{
+    margin-top:20px;
+    color:#ddd;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 28px;
+    border:1px solid var(--gold);
+    color:var(--gold);
+    text-decoration:none;
+    border-radius:40px;
+    transition:.4s;
+    background:rgba(212,175,55,.05);
+}
+
+.btn:hover{
+    background:var(--gold);
+    color:#000;
+    box-shadow:0 0 25px rgba(212,175,55,.4);
+}
+
+/* Sections */
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.2rem;
+    color:var(--gold);
+    margin-bottom:50px;
+    position:relative;
+}
+
+.section-title::after{
+    content:"";
+    width:80px;
+    height:2px;
+    background:var(--gold);
+    display:block;
+    margin:15px auto;
+}
+
+/* Cards */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:25px;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(212,175,55,.2);
+}
+
+.card h3{
+    color:var(--gold);
+    margin-bottom:10px;
+}
+
+/* Timeline */
+
+.timeline{
+    position:relative;
+    margin-top:40px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:20px;
+    top:0;
+    bottom:0;
+    width:2px;
+    background:var(--gold);
+}
+
+.timeline-item{
+    position:relative;
+    margin-left:60px;
+    margin-bottom:40px;
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:25px;
+    border-radius:18px;
+}
+
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    left:-50px;
+    top:30px;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 15px var(--gold);
+}
+
+/* Film Strip */
+
+.filmstrip{
+    display:flex;
+    overflow:hidden;
+    margin:40px 0;
+}
+
+.frame{
+    flex:1;
+    border-top:6px solid var(--gold);
+    border-bottom:6px solid var(--gold);
+    padding:20px;
+    text-align:center;
+    border-left:2px dashed rgba(212,175,55,.4);
+}
+
+/* Skills */
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    justify-content:center;
+}
+
+.skill{
+    padding:10px 18px;
+    border-radius:30px;
+    border:1px solid rgba(212,175,55,.35);
+    background:rgba(212,175,55,.08);
+    color:var(--gold-soft);
+}
+
+/* Social */
+
+.social{
+    text-align:center;
+}
+
+.social a{
+    display:inline-block;
+    margin-top:15px;
+    text-decoration:none;
+    color:var(--gold);
+    border:1px solid var(--gold);
+    padding:12px 24px;
+    border-radius:40px;
+}
+
+.social a:hover{
+    background:var(--gold);
+    color:black;
+}
+
+/* Footer */
+
+footer{
+    padding:40px 20px;
+    text-align:center;
+    border-top:1px solid rgba(212,175,55,.15);
+    color:#999;
+}
+
+/* Animations */
+
+.fade{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.fade.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:768px){
+    nav ul{
+        justify-content:center;
+        gap:15px;
+    }
+
+    .timeline-item{
+        margin-left:45px;
+    }
+
+    .timeline::before{
+        left:12px;
+    }
+
+    .timeline-item::before{
+        left:-40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader">
+    <div class="loader-title">Loading Portfolio</div>
+    <div class="loader-bar"><span></span></div>
+</div>
+
+<div id="intro">
+    <div class="intro-text">
+        HUMAID HASSAN
+    </div>
+</div>
+
+<nav>
+<div class="nav-container">
+<div class="logo">HH FILMS</div>
+<ul>
+<li><a href="#about">Profile</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-content fade">
+
+<div class="profile">
+    <img src="humaid.jpg" alt="Humaid Hassan">
+</div>
+<h1>Humaid Hassan</h1>
+
+<h2>Creative Writer | Video Editor | Aspiring Filmmaker</h2>
+
+<p>
+Passionate aspiring filmmaker, video editor, and creative storyteller with hands-on experience in media production and content creation. Currently completing a Media Production Internship at Stein Studios (Sirasa TV), gaining practical exposure across sound, camera, production, and editing departments.
+</p>
+
+<div class="contact">
+📍 Kalutara South, Sri Lanka<br>
+📞 +94 75 312 6111 / 0740746881<br>
+✉ humaidhassan203@gmail.com
+</div>
+
+<div class="buttons">
+<a class="btn" href="#" onclick="window.print()">Print / Save PDF</a>
+<a class="btn" href="#" download>Download CV</a>
+</div>
+
+</div>
+</section>
+
+<section id="about" class="fade">
+<h2 class="section-title">Director's Profile</h2>
+
+<div class="card">
+<p>
+Demonstrated strong initiative by independently writing, directing, filming, and editing a short film, developing skills in storytelling, visual communication, and creative problem-solving.
+<br><br>
+Dedicated to building a professional career in filmmaking while continuously learning and contributing to creative projects. Inspired by cinema, visual storytelling, and the creative process behind impactful productions.
+</p>
+</div>
+</section>
+
+<section id="experience" class="fade">
+<h2 class="section-title">Production Experience</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h3>Media Production Intern</h3>
+<strong>Stein Studios (Sirasa TV)</strong>
+<ul>
+<li>Worked across Sound, Camera, Production, and Editing divisions.</li>
+<li>Assisted in television and media production workflows.</li>
+<li>Gained practical exposure to studio and field production operations.</li>
+<li>Collaborated with production teams and learned industry-standard processes.</li>
+</ul>
+</div>
+
+<div class="timeline-item">
+<h3>Intern</h3>
+<strong>University of Moratuwa</strong>
+<ul>
+<li>Participated in technical and production-related activities.</li>
+<li>Developed teamwork, coordination, and problem-solving skills.</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section id="projects" class="fade">
+<h2 class="section-title">Featured Projects</h2>
+
+<div class="filmstrip">
+<div class="frame">WRITER</div>
+<div class="frame">DIRECTOR</div>
+<div class="frame">CINEMATOGRAPHER</div>
+<div class="frame">EDITOR</div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>Independent Short Film</h3>
+<ul>
+<li>Developed story concept and screenplay.</li>
+<li>Directed and managed production.</li>
+<li>Handled cinematography and post-production editing.</li>
+<li>Received recognition during Environmental Day activities.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Creative Video Projects</h3>
+<ul>
+<li>Edited short-form video content.</li>
+<li>Practiced visual storytelling.</li>
+<li>Developed editing and narrative techniques.</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<section id="education" class="fade">
+<h2 class="section-title">Education</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>HND in Data Analysis</h3>
+<p>Esoft Metro Campus<br>2025 - 2027</p>
+</div>
+
+<div class="card">
+<h3>ICT Technician NVQ Level 4</h3>
+<p>IETI (NAITA)<br>2024 - 2025</p>
+</div>
+
+<div class="card">
+<h3>Diploma in Computer Hardware & Networks</h3>
+<p>VTC Dehiwala</p>
+</div>
+
+<div class="card">
+<h3>G.C.E Advanced Level</h3>
+<p>Kalutara Muslim Central College<br>2023</p>
+</div>
+
+<div class="card">
+<h3>G.C.E Ordinary Level</h3>
+<p>Kalutara Muslim Central College<br>2019</p>
+</div>
+
+</div>
+</section>
+
+<section class="fade">
+<h2 class="section-title">Certifications</h2>
+
+<div class="grid">
+<div class="card">Certificate in Production Technology – MIM</div>
+<div class="card">Certificate in Non-Linear Editing – VTC Dehiwala</div>
+<div class="card">Certificate in Cinematography – Junkyard Theory</div>
+<div class="card">AAT Level 3 (Reading)</div>
+</div>
+</section>
+
+<section id="skills" class="fade">
+<h2 class="section-title">Creative Toolkit</h2>
+
+<div class="skills">
+<span class="skill">Video Editing</span>
+<span class="skill">Adobe Premiere Pro</span>
+<span class="skill">Creative Writing</span>
+<span class="skill">Script Writing</span>
+<span class="skill">Story Development</span>
+<span class="skill">Short Film Production</span>
+<span class="skill">Videography</span>
+<span class="skill">Cinematography</span>
+<span class="skill">Content Creation</span>
+<span class="skill">Production Coordination</span>
+<span class="skill">Adobe Creative Suite</span>
+<span class="skill">Microsoft Office</span>
+<span class="skill">Computer Hardware & Networking</span>
+</div>
+</section>
+
+<section class="fade">
+<h2 class="section-title">Languages</h2>
+<div class="skills">
+<span class="skill">English</span>
+<span class="skill">Sinhala</span>
+<span class="skill">Tamil</span>
+</div>
+</section>
+
+<section class="fade">
+<h2 class="section-title">Achievements</h2>
+
+<div class="grid">
+<div class="card">
+Award recipient for a short film project created for Environmental Day.
+</div>
+
+<div class="card">
+Independently wrote, directed, filmed, and edited a short film.
+</div>
+</div>
+</section>
+
+<section class="fade">
+<h2 class="section-title">Creative Interests</h2>
+
+<div class="skills">
+<span class="skill">Cinema</span>
+<span class="skill">Filmmaking</span>
+<span class="skill">Screenwriting</span>
+<span class="skill">Storytelling</span>
+<span class="skill">Video Editing</span>
+<span class="skill">Cinematography</span>
+</div>
+</section>
+
+<section id="contact" class="social fade">
+<h2 class="section-title">Portfolio & Contact</h2>
+
+<p>
+Connect for creative collaborations, media projects, and filmmaking opportunities.
+</p>
+
+<a href="https://www.instagram.com/humaid_hassan_hmd?igsh=Nmkxa2xodnRoMjlu" target="_blank">
+Instagram Portfolio
+</a>
+</section>
+
+<footer>
+© 2025 Humaid Hassan • Future Filmmaker • Crafted in a Cinematic Black & Gold Portfolio Experience
+</footer>
+
+<script>
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("loader").style.opacity="0";
+document.getElementById("loader").style.visibility="hidden";
+},2600);
+});
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:.15});
+
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
